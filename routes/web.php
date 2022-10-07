@@ -31,3 +31,6 @@ Route::get('edit/{id}', 'MemberController@edit')->name('member.edit');
 Route::post('update/{id}', 'MemberController@update')->name('member.update');
 // 削除機能
 Route::post('destroy/{id}', 'MemberController@destroy')->name('member.destroy');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
