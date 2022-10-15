@@ -15,6 +15,11 @@ class CreateToDoDetailsTable extends Migration
     {
         Schema::create('to_do_details', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('to_do_id')
+            ->refarences('id')
+            ->on('to_dos');
+            $table->text('name');
+            $table->boolean('completed_flag');
             $table->timestamps();
         });
     }
