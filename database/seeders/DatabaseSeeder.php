@@ -15,10 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $todo = ToDo::factory()->create();
         ToDoDetail::factory(5)->create([
-            'to_do_id' => $todo->id
+            'to_do_id' => $todo->id,
         ]);
     }
 }
