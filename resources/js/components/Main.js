@@ -4,6 +4,7 @@ import {Box} from "@mui/system";
 import Navigation from "./Navigation";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Example from "../pages/Example";
+import Home from "../pages/Home";
 
 function Main() {
     return (
@@ -12,7 +13,7 @@ function Main() {
         <Router>
             <main className={"m-5"}>
                 <Switch>
-                    <Route path="/" exact component={Example} />
+                    <Route path="/" exact component={Home} />
                 </Switch>
             </main>
         </Router>
