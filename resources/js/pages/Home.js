@@ -1,14 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Grid} from "@mui/material";
+import { Grid } from "@mui/material";
 import ToDo from "../components/ToDo";
+import { useCurrentToDoList, useGetToDoList } from "../hooks/ToDoList";
 
 function Home() {
+    const { isLoading } = useGetToDoList();
+    const toDoList = useCurrentToDoList();
+    if (isLoading) return "Now Loading......";
     return (
         <Grid container spacing={2}>
-            <Grid item xs={4}>
-                <ToDo />
-            </Grid>
+            {toDoList.map((toDo) => (
+                <Grid item key={toDo.id} xs={4}>
+                    <ToDo toDo={toDo} />
+                </Grid>
+            ))};
         </Grid>
     );
 }

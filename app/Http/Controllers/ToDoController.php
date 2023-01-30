@@ -17,7 +17,7 @@ class ToDoController extends Controller
     public function index()
     {
         // ToDoを取得する
-        $toDos = ToDo::get();
+        $toDos = ToDo::with('todoDetails')->get();
 
         // 取得したToDoを返却する
         return $toDos;
