@@ -1,6 +1,8 @@
-import { Card, CardContent, List, TextField } from "@mui/material";
+import { AddCircle, Delete } from "@mui/icons-material";
+import { Card, CardActions, CardContent, IconButton, List, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { useUpdateToDoMutateTask } from "../hooks/ToDo";
+import { useDeleteToDoMutateTask, useUpdateToDoMutateTask } from "../hooks/ToDo";
+import { useStoreToDoDetailMutateTask } from "../hooks/ToDoDetail";
 import ToDoDtail from "./ToDoDitail";
 function ToDo(props) {
     const [timer, setTimer] = useState(null);
@@ -20,9 +22,21 @@ function ToDo(props) {
             };
             updateToDoMutation.mutate(data);
         }, 500);
-        
+
         setTimer(newTimer);
     }
+
+    /** 削除ボタン押下イベント */
+    const { deleteToDoMutation } = useDeleteToDoMutateTask();
+    const eventDeleteTodo = (event) => {
+        deleteToDoMutation.mutate(toDo);
+    };
+
+    /** 追加ボタン押下イベント */
+    const { storeToDoDetailMutation } = useStoreToDoDetailMutateTask();
+    const eventStoreTodoDetail = (event) => {
+        storeToDoDetailMutation.mutate(toDo);
+    };
 
     return (
         <Card>
@@ -41,6 +55,23 @@ function ToDo(props) {
                     })}
                 </List>
             </CardContent>
+            <CardActions>
+                <IconButton
+                    edge="start"
+                    aria-label="add"
+                    color="primary"
+                    onClick={eventStoreTodoDetail}
+                >
+                    <AddCircle />
+                </IconButton>
+                <IconButton
+                    edge="end"
+                    aria-label="delete"
+                    onClick={eventDeleteTodo}
+                >
+                    <Delete />
+                </IconButton>
+            </CardActions>
         </Card>
     );
 }
